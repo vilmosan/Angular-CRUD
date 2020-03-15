@@ -1,3 +1,4 @@
+/*
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {Router} from '@angular/router';
@@ -24,4 +25,4 @@ export class ListComponent implements OnInit {
   goToDetails(userId: string) {
     this.router.navigate(['details', userId]);
   }
-}
+}*/
