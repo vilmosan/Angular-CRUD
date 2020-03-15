@@ -1,0 +1,24 @@
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Type</td>
+                <td>Details</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let character of characterArray">
+                <td>{{ character.id }}</td>
+                <td>{{ character.name }}</td>
+                <td>{{ character.status }}</td>
+                <td>{{ character.type }}</td>
+                <td><button (click)="goToDetails(user.id)">Details</button></td>
+                <td><button (click)="onDelete(character)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

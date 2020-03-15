@@ -7,12 +7,12 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'list'
+    redirectTo: 'characters'
   },
   {
-    path: 'list',
+    path: 'characters',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./list/list.module').then(m => m.ListModule)
+    loadChildren: () => import('./components/list-of-characters/list-of-characters.module').then(m => m.ListOfCharactersModule)
   },
   {
     path: 'details',

@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login//login/login.component';
+import { CharacterComponent } from './components/character/character/character.component';
+import { AddCharacterComponent } from './components/add-character/add-character.component';
+import { ListOfCharactersComponent } from './components/list-of-characters/list-of-characters/list-of-characters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    CharacterComponent,
+    AddCharacterComponent,
+    ListOfCharactersComponent
   ],
   imports: [
     BrowserModule,
