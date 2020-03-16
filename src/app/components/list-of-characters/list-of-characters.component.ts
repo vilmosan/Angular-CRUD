@@ -19,6 +19,14 @@ export class ListOfCharactersComponent implements OnInit {
     });
   }
 
+  addCharacter(character:Character) {
+    this.dataService.addCharacter(character).subscribe(character => {
+      // Overwrites the ID to be unique
+      character.id = Date.now();
+      this.charactersArray.push(character);
+    });
+  }
+
   deleteCharacter(character:Character){
     this.charactersArray = this.charactersArray.filter(c => c.id !== character.id);
     this.dataService.deleteCharacter(character).subscribe();

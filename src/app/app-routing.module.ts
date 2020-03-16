@@ -7,6 +7,11 @@ import { ListOfCharactersComponent } from './components/list-of-characters/list-
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'characters'
+  },
+  {
+    path: 'characters',
     component: ListOfCharactersComponent
   }
 ];

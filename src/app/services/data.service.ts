@@ -15,16 +15,20 @@ const httpOptions = {
 })
 export class DataService {
 
-  characterUrls:string = 'https://jsonplaceholder.typicode.com/users';
+  charactersUrl:string = 'http://jsonplaceholder.typicode.com/users';
 
   constructor(private http:HttpClient) { }
 
   getCharacters():Observable<Character[]>{
-    return this.http.get<Character[]>(this.characterUrls);
+    return this.http.get<Character[]>(this.charactersUrl);
+  }
+
+  addCharacter(character:Character):Observable<Character> {
+    return this.http.post<Character>(this.charactersUrl, character, httpOptions);
   }
 
   deleteCharacter(character:Character):Observable<any>{
-    const url = `${this.characterUrls}/${character.id}`;
+    const url = `${this.charactersUrl}/${character.id}`;
     return this.http.delete<Character>(url, httpOptions)
   }
 
