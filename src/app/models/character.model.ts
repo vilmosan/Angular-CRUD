@@ -1,7 +1,7 @@
 export class Character {
-    id: string;
+    id: number;
     name: string;
-    gender: string;
-    type: string;
+    username: string;
+    email: string;
   }
   

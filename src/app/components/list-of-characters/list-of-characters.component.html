@@ -1,0 +1,39 @@
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Username</td>
+                <td>Email</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let character of charactersArray">
+                    <td>{{ character.id }}</td>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.username }}</td>
+                    <td>{{ character.email }}</td>
+                    <td>
+                        <button (click)="goToDetails(character.id)">Details</button>
+                    </td>
+                    <td>
+                        <button (click)="onDelete(character)">Delete</button>
+                    </td>
+            </tr>
+            <!--
+            <tr>
+                <app-single-character
+                    *ngFor='let character of charactersArray' 
+                    [character]='character'
+                    (deleteCharacter)="deleteCharacter($event)"
+                    >
+                </app-single-character>
+            </tr>
+            -->
+        </tbody>
+    </table>
+</div>
