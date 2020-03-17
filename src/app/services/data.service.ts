@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
+import { tap, catchError, map} from 'rxjs/operators';
 
 import { Character } from '../models/character.model';
 
@@ -19,11 +20,22 @@ export class DataService {
 
   constructor(private http:HttpClient) { }
 
-  getCharacters():Observable<Character[]>{
-    return this.http.get<Character[]>(this.charactersUrl);
+  private handleError(error: any) {
+    console.log(error);
+    return throwError(error);
   }
 
-  addCharacter(character:Character):Observable<Character> {
+  getCharacters():Observable<Character[]>{
+    return this.http.get<Character[]>(this.charactersUrl).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
+    
+  };
+
+  
+
+  createCharacter(character:Character):Observable<Character> {
     return this.http.post<Character>(this.charactersUrl, character, httpOptions);
   }
 
@@ -31,6 +43,29 @@ export class DataService {
     const url = `${this.charactersUrl}/${character.id}`;
     return this.http.delete<Character>(url, httpOptions)
   }
+
+
+/*
+  deleteCharacter(id){
+    return this.http
+                  .get(`${this.charactersUrl}/delete/${id}`);
+  }
+*/
+  public findById(id:number){
+    //return this.http.get(`${this.charactersUrl}/${id}`);
+    const data = this.getCharacters();
+    console.log(data);
+    /*
+    for (const d of data) {
+      if (d.id === id) {
+        return d;
+      }
+    }*/
+    return undefined;
+  }
+
+
+  
 
 
 }

@@ -1,14 +1,18 @@
 
 
 <div>
-    <app-add-character (addCharacter)="addCharacter($event)"></app-add-character>
-    <table class="table table-striped">
+        <!-- <button class="btn btn-success" (click)="goToCreate()">Create character</button> -->
+    <app-create-character (createCharacter)="createCharacter($event)"></app-create-character>
+   
+   
+   <table class="table table-striped">
         <thead>
             <tr>
                 <td>ID</td>
                 <td>Name</td>
                 <td>Username</td>
                 <td>Email</td>
+                <td></td>
                 <td></td>
             </tr>
         </thead>
@@ -19,7 +23,9 @@
                     <td>{{ character.username }}</td>
                     <td>{{ character.email }}</td>
                     <td>
-                        <button (click)="goToDetails(character.id)">Details</button>
+                        
+          <!--<a [routerLink]="['/update', character.id]" class="btn btn-primary">Update</a>-->
+                        <button (click)="goToUpdate(character.id)">Details</button>
                     </td>
                     <td>
                         <button (click)="deleteCharacter(character)">Delete</button>
