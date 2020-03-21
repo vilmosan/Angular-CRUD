@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ListOfCharactersComponent implements OnInit {
 
   charactersArray:Character[];
+  selectedCharacter: Character;
 
   constructor(
     private router: Router,
@@ -25,15 +26,20 @@ export class ListOfCharactersComponent implements OnInit {
     });
   }
 
+  onSelect(character: Character): void{
+    this.selectedCharacter = character;
+  }
+
   goToUpdate(id: number): void {
     this.router.navigate(['update', id]);
   }
 
-  createCharacter(character:Character): void {
-    this.dataService.createCharacter(character).subscribe(character => {
-      // Overwrites the ID to be unique
-      character.id = Date.now();
-      this.charactersArray.push(character);
+  createCharacter(newCharacter: Character): void {
+    this.dataService.createCharacter(newCharacter)
+      .subscribe(character => {
+        // Overwrites the ID to be unique
+        newCharacter.id = Date.now();
+        this.charactersArray.push(character);
     });
   }
   

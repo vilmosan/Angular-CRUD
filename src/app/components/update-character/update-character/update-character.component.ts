@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../services/data.service';
@@ -10,7 +10,8 @@ import { DataService } from '../../../services/data.service';
 })
 export class UpdateCharacterComponent implements OnInit {
 
-  character: Character;
+  @Input() character: Character;
+  //character: Character;
 
   constructor(
     private activedRoute: ActivatedRoute,

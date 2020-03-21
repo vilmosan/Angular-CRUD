@@ -17,7 +17,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let character of charactersArray">
+            <tr *ngFor="let character of charactersArray"
+                [class.selected]="character === selectedCharacter"
+                (click)="onSelect(character)">
                     <td>{{ character.id }}</td>
                     <td>{{ character.name }}</td>
                     <td>{{ character.username }}</td>
@@ -34,3 +36,17 @@
         </tbody>
     </table>
 </div>
+
+
+<div *ngIf="selectedCharacter">
+    <h2>{{selectedCharacter.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedCharacter.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="selectedCharacter.name" placeholder="name"/>
+        <input [(ngModel)]="selectedCharacter.username" placeholder="username"/>
+        <input [(ngModel)]="selectedCharacter.email" placeholder="email"/>
+      </label>
+      <button class="btn btn-info" (click)="onSave()">Save</button>
+    </div>
+  </div>
