@@ -1,0 +1,9 @@
+.character-card {
+    max-width: 300px;
+    margin: auto;
+}
+#characterIdOutput{
+    font-size: 1.8rem;
+    padding: 0.4rem 0;
+    text-align: center;
+}

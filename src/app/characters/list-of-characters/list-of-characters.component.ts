@@ -25,7 +25,7 @@ export class ListOfCharactersComponent implements OnInit {
       switchMap(params => {
         // (+) before `params.get()` turns the string into a number
         this.selectedId = +params.get('id');
-        return this.dataService.getCharacters();
+        return this.dataService.getAllCharacters();
       })
     );
   }
@@ -51,10 +51,10 @@ export class ListOfCharactersComponent implements OnInit {
     });
   }
   
-  deleteCharacter(character:Character){
-    this.charactersArray = this.charactersArray.filter(c => c.id !== character.id);
+  */
+
+  deleteCharacter(character: Character){
     this.dataService.deleteCharacter(character).subscribe();
   }
-  */
 
 }

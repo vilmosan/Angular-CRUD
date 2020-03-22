@@ -1,5 +1,5 @@
-
-<div *ngIf="character$ | async as character">
+<!--
+<div *ngIf="character">
   <h1>Detailed view of {{ character.name }} </h1>
   <div>
     <label>Id: </label>{{ character.id }}</div>
@@ -24,36 +24,51 @@
     <label>Gender: </label>
     <input [(ngModel)]="character.gender" placeholder="gender"/>
   </div>
-  
-  <p>
-    <button (click)="goToCharacters(character)">Back</button>
-  </p>
-</div>
-
-<!--
-<div>
-<h1>Character details for character: {{ character.name }} </h1>
-<form novalidate ngForm="#f">
-  <div class="form-group">
-    <label for="exampleFormControlInput1">ID</label>
-    <input type="text" name="id" class="form-control" id="exampleFormControlInput1" [value]="character.id" disabled>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Name</label>
-    <input type="text" name="name" class="form-control" id="exampleFormControlInput2" [(ngModel)]="character.name" required #nameInput="ngModel">
-    <span style="color: red" *ngIf="name.invalid">Name is required</span>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Username</label>
-    <input type="text" name="username" class="form-control" id="exampleFormControlInput3" [(ngModel)]="character.username" #city="ngModel" minlength="3" required>
-    <span style="color: red" *ngIf="username.invalid">Username is invalid!</span>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email</label>
-    <input type="text" name="email" class="form-control" id="exampleFormControlInput3" [(ngModel)]="character.email" #city="ngModel" minlength="3" required>
-    <span style="color: red" *ngIf="email.invalid">Email is invalid!</span>
-  </div>
-  <button class="btn btn-info" (click)="save()">Save</button>
-</form>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
 </div>
 -->
+<div class="detailsView">
+  <mat-card class="character-card">
+    <mat-card-header>
+      <div mat-card-avatar id="characterIdOutput"><p>#{{ character.id }}</p></div>
+      <mat-card-title>{{ character.name }}</mat-card-title>
+      <mat-card-subtitle>{{ character.species }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{character.image}}" alt="Character Portrait">
+    <mat-card-content>
+      <form novalidate ngForm="#f">
+        <div class="form-group">
+          <label for="nameFormControlInput">Name:</label>
+          <input [(ngModel)]="character.name" name="name" type="text" class="form-control" [value]="character.name" required #name="ngModel"/>
+          <span style="color: crimson" *ngIf="name.invalid">Character's name is required.</span>
+        </div>
+        <div class="form-group">
+          <label for="speciesFormControlInput">Species:</label>
+          <input [(ngModel)]="character.species" name="species" type="text" class="form-control"
+                [value]="character.species" required #species="ngModel"/>
+          <span style="color: crimson" *ngIf="species.invalid">Character's species is required.</span>
+        </div>
+        <div class="form-group">
+          <label>Status: </label>
+          <select class="form-control" id ="status"
+                  required
+                  [(ngModel)]="character.status"
+                  #status="ngModel"
+                  name="status">
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select> 
+        </div>
+        <div class="form-group">
+          <label for="genderFormControlInput">Gender:</label>
+          <input [(ngModel)]="character.gender" name="gender" type="text" class="form-control" [value]="character.gender" required #gender="ngModel"/>
+          <span style="color: crimson" *ngIf="gender.invalid">Character's gender is required.</span>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="save()">Update</button>
+      <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

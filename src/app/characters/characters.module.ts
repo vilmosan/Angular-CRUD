@@ -6,6 +6,8 @@ import { ListOfCharactersComponent } from './list-of-characters/list-of-characte
 import { UpdateCharacterComponent } from './update-character/update-character.component';
 import { CharactersRoutingModule } from './characters-routing.module';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { CharactersRoutingModule } from './characters-routing.module';
   imports: [
     CommonModule,
     FormsModule,
+    MatCardModule,
+    MatButtonModule,
     CharactersRoutingModule
   ]
 })

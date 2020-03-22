@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Character } from '../character.model';
-import { switchMap } from 'rxjs/operators';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-character',
@@ -12,26 +11,32 @@ import { Observable } from 'rxjs';
 })
 export class UpdateCharacterComponent implements OnInit {
 
-  character$: Observable<Character>;
+  @Input() character: Character;
 
-  statuses = ['Alive', 'Dead', 'Hibernated'];
+  statuses = ['Alive', 'Dead', 'Hibernated', 'Unknown'];
 
   constructor(
     private activedRoute: ActivatedRoute,
     private dataService: DataService,
-    private router: Router
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.character$ = this.activedRoute.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.dataService.getCharacter(params.get('id')))
-    );
+    this.getCharacter();
   }
 
-  goToCharacters(character: Character) {
-    let characterId = character ? character.id : null;
-    // Pass along the character id if available so that the ListOfCharacters component can select that character.
-    this.router.navigate(['/characters', { id: characterId }]);
+  getCharacter(): void{
+    const id = +this.activedRoute.snapshot.paramMap.get('id');
+    this.dataService.getCharacter(id)
+      .subscribe(character => this.character = character);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  save(): void{
+    this.dataService.updateCharacter(this.character)
+      .subscribe(() => this.goBack());
   }
 }
