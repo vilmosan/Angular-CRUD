@@ -12,13 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListOfCharactersComponent implements OnInit {
 
-<<<<<<< HEAD:src/app/characters/list-of-characters/list-of-characters.component.ts
   characters$: Observable<Character[]>;
   selectedId: number;
-=======
-  charactersArray:Character[];
-  selectedCharacter: Character;
->>>>>>> master:src/app/components/list-of-characters/list-of-characters.component.ts
 
   constructor(
     private activedRoute: ActivatedRoute,
