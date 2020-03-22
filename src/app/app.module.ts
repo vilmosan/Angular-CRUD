@@ -3,24 +3,27 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
-import { ListOfCharactersComponent } from './components/list-of-characters/list-of-characters.component';
-import { CreateCharacterComponent } from './components/create-character/create-character.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CharactersModule } from './characters/characters.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListOfCharactersComponent,
-    CreateCharacterComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CharactersModule,
+    AppRoutingModule // This should be the last module.
   ],
   providers: [],
   bootstrap: [AppComponent]

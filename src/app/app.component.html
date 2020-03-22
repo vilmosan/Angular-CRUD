@@ -1,7 +1,12 @@
 <app-header></app-header>
 
-<div class="container-fluid">
-  <router-outlet></router-outlet>
+<h1>Rick and Morty's Museum</h1>
+<nav>
+  <a routerLink="/episodes" routerLinkActive="active">Episodes</a>
+  <a routerLink="/characters" routerLinkActive="active"> | Characters</a>
+</nav>
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>
 
 <app-footer></app-footer>
