@@ -8,6 +8,8 @@ import { CharactersRoutingModule } from './characters-routing.module';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatInputModule,
+    MatTableModule,
     CharactersRoutingModule
   ]
 })

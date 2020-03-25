@@ -6,10 +6,8 @@
     catchError(this.handleError<Character>(`getCharacter id=${id}`))
   );
 }
- */
 
-/*
-<!--
+
 <div>
 <h1>Character details for character: {{ character.name }} </h1>
 <form novalidate ngForm="#f">
@@ -35,5 +33,32 @@
   <button class="btn btn-info" (click)="save()">Save</button>
 </form>
 </div>
--->
-*/
+
+<div *ngIf="character">
+  <h1>Detailed view of {{ character.name }} </h1>
+  <div>
+    <label>Id: </label>{{ character.id }}</div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="character.name" placeholder="name"/>
+  </div>
+  <div>
+    <label>Status: </label>
+    <select class="form-control" id ="status"
+            required
+            [(ngModel)]="character.status"
+            #status="ngModel">
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+    </select> 
+  </div>
+  <div>
+    <label>Species: </label>
+    <input [(ngModel)]="character.species" placeholder="name"/>
+  </div>
+  <div>
+    <label>Gender: </label>
+    <input [(ngModel)]="character.gender" placeholder="gender"/>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

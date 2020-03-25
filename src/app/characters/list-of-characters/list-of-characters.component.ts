@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Character } from '../character.model';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-of-characters',
@@ -12,22 +13,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListOfCharactersComponent implements OnInit {
 
-  characters$: Observable<Character[]>;
+  //characters$: Observable<Character[]>;
   selectedId: number;
+
+  characters: Character[];
 
   constructor(
     private activedRoute: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.characters$ = this.activedRoute.paramMap.pipe(
+    /* this.characters$ = this.activedRoute.paramMap.pipe(
       switchMap(params => {
         // (+) before `params.get()` turns the string into a number
         this.selectedId = +params.get('id');
         return this.dataService.getAllCharacters();
       })
-    );
+    ); */
+    this.getHeroes();
+  }
+
+  getHeroes(): void {
+    this.dataService.getAllCharacters()
+    .subscribe(characters => this.characters = characters);
   }
   /*
   onSelect(character: Character): void{
@@ -37,11 +47,11 @@ export class ListOfCharactersComponent implements OnInit {
   onSelect(character: Character): void{
     this.selectedCharacter = character;
   }
-
-  goToUpdate(id: number): void {
-    this.router.navigate(['update', id]);
+*/
+  goToUpdate(id: number | string): void {
+    this.router.navigate(['/character', id]);
   }
-
+/*
   createCharacter(newCharacter: Character): void {
     this.dataService.createCharacter(newCharacter)
       .subscribe(character => {
@@ -52,8 +62,13 @@ export class ListOfCharactersComponent implements OnInit {
   }
   
   */
-
+/*
   deleteCharacter(character: Character){
+    this.dataService.deleteCharacter(character).subscribe();
+  }
+  */
+  deleteCharacter(character: Character): void {
+    this.characters = this.characters.filter(h => h !== character);
     this.dataService.deleteCharacter(character).subscribe();
   }
 
